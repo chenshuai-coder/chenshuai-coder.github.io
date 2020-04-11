@@ -86,9 +86,11 @@
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="题目斐波那契数列指的是这样一个数列，1、1、2、3、5、8、13、21、34、……，这个数列从第3项开始，每一项都等于前两项之和。 解法1.递归public long fibA(int n) {&#x2F;&#x2F;递归算法，但在在递归调用树中，存在大量的相同子问题计算 ,时间复杂度O(2^n)     if(n&#x3D;&#x3D;0) return 0;     if(n&#x3D;&#x3D;1) return 1;     return fib">
 <meta property="og:image" content="http://yoursite.com/D:%5Cmyblog%5Cthemes%5Cnext%5Csource%5Cimages%5CdataStruct1.png">
+<meta property="og:image" content="http://yoursite.com/%0AD:/myblog/themes/next/source/images/dataStruct1.png">
 <meta property="og:image" content="http://yoursite.com/D:%5Cmyblog%5Cthemes%5Cnext%5Csource%5Cimages%5CdataStruct2.png">
+<meta property="og:image" content="http://yoursite.com/%0AD:/myblog/themes/next/source/images/dataStruct2.png">
 <meta property="article:published_time" content="2020-04-11T04:07:21.000Z">
-<meta property="article:modified_time" content="2020-04-11T06:05:23.860Z">
+<meta property="article:modified_time" content="2020-04-11T06:32:05.444Z">
 <meta property="article:author" content="陈帅">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/D:%5Cmyblog%5Cthemes%5Cnext%5Csource%5Cimages%5CdataStruct1.png">
@@ -397,7 +399,8 @@
     if(n==0) return 0;
     if(n==1) return 1;
     return fibA(n-1)+fibA(n-2);
-}</code></pre><p><img src="../../../../D:%5Cmyblog%5Cthemes%5Cnext%5Csource%5Cimages%5CdataStruct1.png" alt=""><br>如图所示，递归中存在相同的问题运算，使运算次数增加</p>
+}</code></pre><p><img src="../../../../D:%5Cmyblog%5Cthemes%5Cnext%5Csource%5Cimages%5CdataStruct1.png" alt=""><br><img src="../../../../
+D:\myblog\themes\next\source\images\dataStruct1.png"><br>如图所示，递归中存在相同的问题运算，使运算次数增加</p>
 <h3 id="2-递推"><a href="#2-递推" class="headerlink" title="2.递推"></a>2.递推</h3><pre><code>public long fibB(int n) {//递推算法 自底向上 ，子问题计算结果存放在表中,时间复杂度O(n) 
     long fibo[]= new long[100];
     if(n==0) return 0;
@@ -475,7 +478,8 @@ public long fibD(int n) {//动态规划 当前值仅为前两次计算结果的�
     }
     return sum;
 }
-}</code></pre><h2 id="运算结果"><a href="#运算结果" class="headerlink" title="运算结果"></a>运算结果</h2><p><img src="../../../../D:%5Cmyblog%5Cthemes%5Cnext%5Csource%5Cimages%5CdataStruct2.png" alt=""></p>
+}</code></pre><h2 id="运算结果"><a href="#运算结果" class="headerlink" title="运算结果"></a>运算结果</h2><p><img src="../../../../D:%5Cmyblog%5Cthemes%5Cnext%5Csource%5Cimages%5CdataStruct2.png" alt=""><br><img src="../../../../
+D:\myblog\themes\next\source\images\dataStruct2.png"></p>
 
       
     </div>
