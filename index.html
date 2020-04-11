@@ -347,7 +347,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  734
+                  757
                 </span>
               
 
@@ -388,91 +388,18 @@
         
           
             <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>斐波那契数列指的是这样一个数列，1、1、2、3、5、8、13、21、34、……，这个数列从第3项开始，每一项都等于前两项之和。</p>
-<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><h3 id="1-递归"><a href="#1-递归" class="headerlink" title="1.递归"></a>1.递归</h3><pre><code>public long fibA(int n) {//递归算法，但在在递归调用树中，存在大量的相同子问题计算 ,时间复杂度O(2^n)
-    if(n==0) return 0;
-    if(n==1) return 1;
-    return fibA(n-1)+fibA(n-2);
-}</code></pre><p><img src="/2020/04/11/Fibonacci%E6%95%B0%E5%88%97%E5%9B%9B%E7%A7%8D%E6%B1%82%E6%B3%95/../../../D:%5Cmyblog%5Cthemes%5Cnext%5Csource%5Cimages%5CdataStruct1.png" alt="图片呢？？？"><br><img src="/2020/04/11/Fibonacci%E6%95%B0%E5%88%97%E5%9B%9B%E7%A7%8D%E6%B1%82%E6%B3%95/../../../
-D:/myblog\themes\next\source\images\dataStruct1.png"><br>如图所示，递归中存在相同的问题运算，使运算次数增加</p>
-<h3 id="2-递推"><a href="#2-递推" class="headerlink" title="2.递推"></a>2.递推</h3><pre><code>public long fibB(int n) {//递推算法 自底向上 ，子问题计算结果存放在表中,时间复杂度O(n) 
-    long fibo[]= new long[100];
-    if(n==0) return 0;
-    if(n==1) return 1;
-    fibo[0]=0;
-    fibo[1]=1;
-    for(int i=2;i&lt;=n;i++)
-       fibo[i]=fibo[i-2]+fibo[i-1];
-    return fibo[n];    
-}</code></pre><p>递推：自底向上运算，借用了之前已经算出的值来进行下一次运算</p>
-<h3 id="3-优化递归"><a href="#3-优化递归" class="headerlink" title="3.优化递归"></a>3.优化递归</h3><pre><code>long fib[]= new long[100];
-public long fibC(int n) {//自顶向下 ，保留递归调用，但使用已经计算的子问题的值，时间复杂度O(n)
-    if(n==0) return 0;
-    if(n==1) return 1;
-    if(fib[n]!=0) return fib[n];
-    return fib[n]=fibC(n-1)+fibC(n-2);
-}</code></pre><h3 id="4-动态规划"><a href="#4-动态规划" class="headerlink" title="4.动态规划"></a>4.动态规划</h3><pre><code>public long fibD(int n) {//动态规划 当前值仅为前两次计算结果的总和, 时间复杂度O(n) 
-    long front2=0,front1=1,sum = 0;
-     for(int i=2;i&lt;=n;i++)
-     {
-         sum=front2+front1;
-         front2=front1;
-         front1=sum;
-    }
-    return sum;
-}</code></pre><p>为了避免出现数太大溢出的问题，使用long 型，它的范围是-9223372036854775808 （-2的63次方）到9223372036854775807 （2的63次方-1）</p>
-<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code>package datastruct;
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><h3 id="1-递归"><a href="#1-递归" class="headerlink" title="1.递归"></a>1.递归</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">fibA</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<span class="hljs-comment">//递归算法，但在在递归调用树中，存在大量的相同子问题计算 ,时间复杂度O(2^n)</span><br>        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">return</span> fibA(n-<span class="hljs-number">1</span>)+fibA(n-<span class="hljs-number">2</span>);<br>    &#125;<br></code></pre></td></tr></table></figure>
 
-import java.util.Scanner;
 
-//Fibonacci数列四种实现
-public class demo4_Fibonacci {
+<p><img src="https://note.youdao.com/yws/public/resource/2b3083c53e55e9819b43b6ffff9f1248/xmlnote/524C09B747B8486382F7BB64AF6E325B/10" alt="图片呢？？？"><br>如图所示，递归中存在相同的问题运算，使运算次数增加</p>
+<h3 id="2-递推"><a href="#2-递推" class="headerlink" title="2.递推"></a>2.递推</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">fibB</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<span class="hljs-comment">//递推算法 自底向上 ，子问题计算结果存放在表中,时间复杂度O(n) </span><br>		<span class="hljs-keyword">long</span> fibo[]= <span class="hljs-keyword">new</span> <span class="hljs-keyword">long</span>[<span class="hljs-number">100</span>];<br>		<span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		fibo[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;<br>		fibo[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)<br>		   fibo[i]=fibo[i-<span class="hljs-number">2</span>]+fibo[i-<span class="hljs-number">1</span>];<br>		<span class="hljs-keyword">return</span> fibo[n];	<br>	&#125;<br></code></pre></td></tr></table></figure>
 
-public static void main(String[] args) {
-    demo4_Fibonacci demo4 = new demo4_Fibonacci();
-    System.out.println(&quot;请输入N的值&quot;);
-    Scanner s=new Scanner(System.in);
-    int n=s.nextInt();
-    System.out.println(demo4.fibD(n));
-    System.out.println(demo4.fibC(n));
-    System.out.println(demo4.fibB(n));
-    System.out.println(demo4.fibA(n));
-
-    System.out.println(&quot;程序结束&quot;);
-}
-public long fibA(int n) {//递归算法，但在在递归调用树中，存在大量的相同子问题计算 ,时间复杂度O(2^n)
-    if(n==0) return 0;
-    if(n==1) return 1;
-    return fibA(n-1)+fibA(n-2);
-}
-public long fibB(int n) {//递推算法 自底向上 ，子问题计算结果存放在表中,时间复杂度O(n) 
-    long fibo[]= new long[100];
-    if(n==0) return 0;
-    if(n==1) return 1;
-    fibo[0]=0;
-    fibo[1]=1;
-    for(int i=2;i&lt;=n;i++)
-       fibo[i]=fibo[i-2]+fibo[i-1];
-    return fibo[n];    
-}
-long fib[]= new long[100];
-public long fibC(int n) {//自顶向下 ，保留递归调用，但使用已经计算的子问题的值，时间复杂度O(n)
-    if(n==0) return 0;
-    if(n==1) return 1;
-    if(fib[n]!=0) return fib[n];
-    return fib[n]=fibC(n-1)+fibC(n-2);
-}
-public long fibD(int n) {//动态规划 当前值仅为前两次计算结果的总和, 时间复杂度O(n) 
-    long front2=0,front1=1,sum = 0;
-     for(int i=2;i&lt;=n;i++)
-     {
-         sum=front2+front1;
-         front2=front1;
-         front1=sum;
-    }
-    return sum;
-}
-}</code></pre><h2 id="运算结果"><a href="#运算结果" class="headerlink" title="运算结果"></a>运算结果</h2><p><img src="/2020/04/11/Fibonacci%E6%95%B0%E5%88%97%E5%9B%9B%E7%A7%8D%E6%B1%82%E6%B3%95/../../../D:%5Cmyblog%5Cthemes%5Cnext%5Csource%5Cimages%5CdataStruct2.png" alt="图片呢？？？"><br><img src="/2020/04/11/Fibonacci%E6%95%B0%E5%88%97%E5%9B%9B%E7%A7%8D%E6%B1%82%E6%B3%95/../../../
-D:/myblog\themes\next\source\images\dataStruct2.png"></p>
+<p>递推：自底向上运算，借用了之前已经算出的值来进行下一次运算</p>
+<h3 id="3-优化递归"><a href="#3-优化递归" class="headerlink" title="3.优化递归"></a>3.优化递归</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">   <span class="hljs-keyword">long</span> fib[]= <span class="hljs-keyword">new</span> <span class="hljs-keyword">long</span>[<span class="hljs-number">100</span>];<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">fibC</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<span class="hljs-comment">//自顶向下 ，保留递归调用，但使用已经计算的子问题的值，时间复杂度O(n)</span><br>	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span>(fib[n]!=<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> fib[n];<br>	<span class="hljs-keyword">return</span> fib[n]=fibC(n-<span class="hljs-number">1</span>)+fibC(n-<span class="hljs-number">2</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="4-动态规划"><a href="#4-动态规划" class="headerlink" title="4.动态规划"></a>4.动态规划</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">fibD</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<span class="hljs-comment">//动态规划 当前值仅为前两次计算结果的总和, 时间复杂度O(n) </span><br>	<span class="hljs-keyword">long</span> front2=<span class="hljs-number">0</span>,front1=<span class="hljs-number">1</span>,sum = <span class="hljs-number">0</span>;<br> 	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)<br> 	&#123;<br> 		sum=front2+front1;<br> 		front2=front1;<br> 		front1=sum;<br>	&#125;<br>	<span class="hljs-keyword">return</span> sum;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>为了避免出现数太大溢出的问题，使用long 型，它的范围是-9223372036854775808 （-2的63次方）到9223372036854775807 （2的63次方-1）</p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java">   <span class="hljs-keyword">package</span> datastruct;<br><br>   <span class="hljs-keyword">import</span> java.util.Scanner;<br><br>   <span class="hljs-comment">//Fibonacci数列四种实现</span><br>   <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">demo4_Fibonacci</span> </span>&#123;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>	demo4_Fibonacci demo4 = <span class="hljs-keyword">new</span> demo4_Fibonacci();<br>	System.out.println(<span class="hljs-string">"请输入N的值"</span>);<br>	Scanner s=<span class="hljs-keyword">new</span> Scanner(System.in);<br>	<span class="hljs-keyword">int</span> n=s.nextInt();<br>	System.out.println(demo4.fibD(n));<br>	System.out.println(demo4.fibC(n));<br>	System.out.println(demo4.fibB(n));<br>	System.out.println(demo4.fibA(n));<br>	<br>	System.out.println(<span class="hljs-string">"程序结束"</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">fibA</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<span class="hljs-comment">//递归算法，但在在递归调用树中，存在大量的相同子问题计算 ,时间复杂度O(2^n)</span><br>	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">return</span> fibA(n-<span class="hljs-number">1</span>)+fibA(n-<span class="hljs-number">2</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">fibB</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<span class="hljs-comment">//递推算法 自底向上 ，子问题计算结果存放在表中,时间复杂度O(n) </span><br>	<span class="hljs-keyword">long</span> fibo[]= <span class="hljs-keyword">new</span> <span class="hljs-keyword">long</span>[<span class="hljs-number">100</span>];<br>	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	fibo[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;<br>	fibo[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)<br>	   fibo[i]=fibo[i-<span class="hljs-number">2</span>]+fibo[i-<span class="hljs-number">1</span>];<br>	<span class="hljs-keyword">return</span> fibo[n];	<br>&#125;<br><span class="hljs-keyword">long</span> fib[]= <span class="hljs-keyword">new</span> <span class="hljs-keyword">long</span>[<span class="hljs-number">100</span>];<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">fibC</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<span class="hljs-comment">//自顶向下 ，保留递归调用，但使用已经计算的子问题的值，时间复杂度O(n)</span><br>	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span>(fib[n]!=<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> fib[n];<br>	<span class="hljs-keyword">return</span> fib[n]=fibC(n-<span class="hljs-number">1</span>)+fibC(n-<span class="hljs-number">2</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">fibD</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<span class="hljs-comment">//动态规划 当前值仅为前两次计算结果的总和, 时间复杂度O(n) </span><br>	<span class="hljs-keyword">long</span> front2=<span class="hljs-number">0</span>,front1=<span class="hljs-number">1</span>,sum = <span class="hljs-number">0</span>;<br> 	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)<br> 	&#123;<br> 		sum=front2+front1;<br> 		front2=front1;<br> 		front1=sum;<br>	&#125;<br>	<span class="hljs-keyword">return</span> sum;<br>&#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
+<h2 id="运算结果"><a href="#运算结果" class="headerlink" title="运算结果"></a>运算结果</h2><p><img src="https://note.youdao.com/yws/public/resource/f3edbfc6cc521c7f791abc5e2357cc13/xmlnote/558BB86D84F54360902656ACC4648C95/28" alt="图片呢？？？"></p>
 
           
         
@@ -987,16 +914,16 @@ vhjebvkje</code></pre>
         
           
             <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span><br></code></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
@@ -1185,7 +1112,7 @@ vhjebvkje</code></pre>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">815</span>
+    <span title="Site words total count">838</span>
   
 </div>
 
